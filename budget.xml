@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<budget xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="budget.xsd">
+    <expense>
+        <name>Rent</name>
+        <amount>1200</amount>
+        <category>Housing</category>
+    </expense>
+    <expense>
+        <name>Groceries</name>
+        <amount>300</amount>
+        <category>Food</category>
+    </expense>
+    <expense>
+        <name>Electricity Bill</name>
+        <amount>100</amount>
+        <category>Utilities</category>
+    </expense>
+</budget>
