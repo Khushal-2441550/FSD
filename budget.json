@@ -1,0 +1,13 @@
+{
+  "budget": {
+    "income": 60000,
+    "expenses": [
+      { "category": "Rent", "amount": 18000, "date": "2025-02-01", "description": "Monthly house rent" },
+      { "category": "Groceries", "amount": 6000, "date": "2025-02-10", "description": "Weekly grocery shopping" },
+      { "category": "Transport", "amount": 4000, "date": "2025-02-15", "description": "Fuel and commute expenses" },
+      { "category": "Entertainment", "amount": 3000, "date": "2025-02-20", "description": "Movies and dining out" },
+      { "category": "Utilities", "amount": 5000, "date": "2025-02-25", "description": "Electricity, water, and internet bills" }
+    ],
+    "savings": 12000
+  }
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="budgetApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Tracker</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f9ff;
+        }
+        h2, h3 {
+            color: #0056b3;
+        }
+        input, button {
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .expense-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .expense-list li {
+            background: white;
+            padding: 8px;
+            margin: 5px 0;
+            border-left: 5px solid #007bff;
+        }
+    </style>
+</head>
+<body ng-controller="BudgetController">
+    <h2>Budget Tracker</h2>
+
+    <h3>Total Income: ₹{{budget.income | currency:''}}</h3>
+
+    <h3>Search Expenses:</h3>
+    <input type="text" ng-model="searchText" placeholder="Search by category">
+
+    <h3>Expenses:</h3>
+    <ul class="expense-list">
+        <li ng-repeat="expense in budget.expenses | filter:{category: searchText} | orderBy:'-amount'">
+            <strong>{{expense.category | uppercase}}:</strong> ₹{{expense.amount | number}} <br>
+            <em>Date:</em> {{expense.date | date:'MMM d, yyyy'}} <br>
+        </li>
+    </ul>
+
+    <h3>Savings: ₹{{budget.savings | currency:''}}</h3>
+
+    <script>
+        var app = angular.module("budgetApp", []);
+
+        app.controller("BudgetController", function($scope, $http) {
+            // Fetch JSON data using $http.get()
+            $http.get("budget.json").then(function(response) {
+                $scope.budget = response.data.budget;
+                console.log("JSON data fetched:", $scope.budget);
+            });
+
+            // Watch for changes in budget and log them
+            $scope.$watch('budget', function(newValue, oldValue) {
+                if (newValue !== oldValue) {
+                    console.log("Budget data changed:", newValue);
+                }
+            }, true);
+        });
+    </script>
+</body>
+</html>
